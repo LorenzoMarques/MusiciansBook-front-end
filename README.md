@@ -63,6 +63,11 @@
     </ul>
 </section>
 
+<section>
+    <a href="https://github.com/LorenzoMarques/musiciansbook-api">Acesse o repositório contendo o back-end da aplicação clicando aqui!</a>
+</section>
+
+
 <footer>
     <p>Desenvolvido por Lorenzo Marques © 2023</p>
 </footer>

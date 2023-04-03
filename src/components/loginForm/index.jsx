@@ -34,6 +34,7 @@ const LoginForm = ({ setRegister }) => {
 
   const submit = (data) => {
     setLoading(true);
+    console.log(process.env.REACT_APP_RENDER_URL);
     api
       .post("/users/login", data)
       .then((res) => {

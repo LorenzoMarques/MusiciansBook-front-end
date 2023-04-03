@@ -9,8 +9,13 @@ import api from "../../api";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserInfo } from "../../store/features/userInfo/userInfoSlice";
+import apiJamendo from "../../api/apiJamento";
+import { BsFillChatDotsFill } from "react-icons/bs";
+import { HiRadio } from "react-icons/hi2";
+import { IoExit } from "react-icons/io5";
+import { AiFillHome } from "react-icons/ai";
 
-const Header = () => {
+const Header = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const [isNavVisible, setNavVisibility] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -27,6 +32,23 @@ const Header = () => {
 
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
+  };
+
+  const getSongsRadio = () => {
+    apiJamendo
+      .get(
+        `/v3.0/tracks/?client_id=${process.env.REACT_APP_CLIENT_ID}&format=json&limit=10&fuzzytags=groove+rock&speed=high+veryhigh&include=musicinfo&groupby=artist_id`
+      )
+      .then((res) => {
+        setPlaylist([
+          ...res.data.results.filter((element) => element.audio !== ``),
+        ]);
+
+        setCurrentTrackIndex(0);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const search = () => {
@@ -139,11 +161,19 @@ const Header = () => {
             )}
           </InputContainer>
           <Link to="/feed" className="link">
-            Feed
+            <AiFillHome className="icon" size={20} />
+            {isSmallScreen && `Página Inicial`}
           </Link>
           <Link to="/chat" className="link">
-            Mensagens
+            {<BsFillChatDotsFill className="icon" size={20} />}
+            {isSmallScreen && `Mensagens`}
           </Link>
+
+          <button onClick={getSongsRadio} className="link">
+            <HiRadio className="icon" size={20} />
+            {isSmallScreen && `Rádio`}
+          </button>
+
           <a
             href="/"
             className="link"
@@ -151,7 +181,8 @@ const Header = () => {
               localStorage.clear();
             }}
           >
-            Sair
+            <IoExit className="icon" size={20} />
+            {isSmallScreen && `Sair`}
           </a>
           <User
             onClick={() => {

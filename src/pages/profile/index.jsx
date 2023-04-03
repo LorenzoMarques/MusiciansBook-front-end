@@ -27,7 +27,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const ProfilePage = ({ setSong }) => {
+const ProfilePage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState({
     user: {
@@ -231,7 +231,11 @@ const ProfilePage = ({ setSong }) => {
           </ModalContainer>
         </Background>
       )}
-      <Header />
+      <Header
+        setPlaylist={setPlaylist}
+        playlist={playlist}
+        setCurrentTrackIndex={setCurrentTrackIndex}
+      />
       <User>
         <img
           src={"https://cdn-icons-png.flaticon.com/512/149/149071.png"}
@@ -312,7 +316,8 @@ const ProfilePage = ({ setSong }) => {
               userInfo.songs.map((element) => (
                 <Card
                   onClick={(e) => {
-                    setSong(e.currentTarget.id);
+                    setPlaylist([{ name: `song`, audio: e.currentTarget.id }]);
+                    setCurrentTrackIndex(0);
                   }}
                   id={element.url}
                 >

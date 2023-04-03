@@ -51,6 +51,10 @@ export const Nav = styled.nav`
     transition: 0.5s;
     width: fit-content;
     margin-bottom: 20px;
+    display: flex;
+    .icon {
+      margin-right: 10px;
+    }
     :hover {
       filter: brightness(70%);
     }
@@ -61,6 +65,22 @@ export const Nav = styled.nav`
     margin-bottom: 10px;
     width: 100px;
     margin-left: 10px;
+  }
+
+  button {
+    color: var(--color-grey5);
+    text-decoration: none;
+    margin-bottom: 10px;
+    width: fit-content;
+    border: unset;
+    margin-left: 10px;
+    background-color: transparent;
+    font-size: 14px;
+    transition: 0.5s;
+    margin-bottom: 20px;
+    :hover {
+      filter: brightness(70%);
+    }
   }
   @media (min-width: 800px) {
     display: flex;

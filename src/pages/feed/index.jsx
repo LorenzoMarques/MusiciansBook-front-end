@@ -23,7 +23,7 @@ import InfiniteScroll from "../../components/infinityScroll";
 import { useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "../../globalStyle";
 
-const FeedPage = ({ setSong }) => {
+const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
@@ -105,7 +105,11 @@ const FeedPage = ({ setSong }) => {
 
   return (
     <FeedContainer publishModal={publishModal}>
-      <Header />
+      <Header
+        setPlaylist={setPlaylist}
+        playlist={playlist}
+        setCurrentTrackIndex={setCurrentTrackIndex}
+      />
       {publishModal && (
         <PublishModal
           setPublishModal={setPublishModal}
@@ -206,7 +210,10 @@ const FeedPage = ({ setSong }) => {
                   ] === "mpeg" ? (
                     <FakeImage
                       onClick={(e) => {
-                        setSong(e.currentTarget.id);
+                        setPlaylist([
+                          { name: `song`, audio: e.currentTarget.id },
+                        ]);
+                        setCurrentTrackIndex(0);
                       }}
                       id={element.url}
                     >

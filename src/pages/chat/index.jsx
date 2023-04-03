@@ -27,7 +27,7 @@ import {
 } from "react-icons/ai";
 import { LoadingSpinner } from "../../globalStyle";
 
-const ChatPage = () => {
+const ChatPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const [messages, setMessages] = useState([]);
   const [oldMessages, setOldMessages] = useState([]);
   const [userId, setUserID] = useState();
@@ -161,7 +161,11 @@ const ChatPage = () => {
 
   return (
     <ChatPageContainer>
-      <Header />
+      <Header
+        setPlaylist={setPlaylist}
+        playlist={playlist}
+        setCurrentTrackIndex={setCurrentTrackIndex}
+      />
       <Contacts>
         <ContactsHeader>
           <h3>Contatos</h3>

@@ -32,9 +32,7 @@ const ChatPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const [oldMessages, setOldMessages] = useState([]);
   const [userId, setUserID] = useState();
   const [message, setMessage] = useState("");
-  const [socket] = useState(() =>
-    io.connect("https://musiciansbook-deploy.onrender.com")
-  );
+  const [socket] = useState(() => io.connect(process.env.REACT_APP_RENDER_URL));
   const [isHidden, setIsHidden] = useState(true);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);

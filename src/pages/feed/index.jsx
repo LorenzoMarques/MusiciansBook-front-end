@@ -53,13 +53,26 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
     });
 
     const findPost = likedPosts.find((element) => element === postId);
+    const postIndex = posts.findIndex((post) => post.id === postId);
 
     if (findPost) {
       const updatedLikedPosts = likedPosts.filter(
         (element) => element !== postId
       );
       setLikedPosts(updatedLikedPosts);
+
+      if (postIndex !== -1) {
+        const updatedPosts = [...posts];
+        updatedPosts[postIndex].likes--;
+        setPosts(updatedPosts);
+      }
     } else {
+      if (postIndex !== -1) {
+        const updatedPosts = [...posts];
+        updatedPosts[postIndex].likes++;
+        setPosts(updatedPosts);
+      }
+
       setLikedPosts([...likedPosts, postId]);
     }
   };

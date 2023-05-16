@@ -12,6 +12,7 @@ import {
   ImageContainer,
   LikeButton,
   LikeCommentContainer,
+  Likes,
   Post,
   PostsContainer,
   UserContainer,
@@ -23,7 +24,7 @@ import { RiFolderMusicFill, RiPlayCircleLine } from "react-icons/ri";
 import PublishModal from "../../components/publishModal";
 import InfiniteScroll from "../../components/infinityScroll";
 import { useNavigate } from "react-router-dom";
-import { LoadingSpinner } from "../../globalStyle";
+import { Line, LoadingSpinner } from "../../globalStyle";
 
 const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const [likedPosts, setLikedPosts] = useState([]);
@@ -250,6 +251,10 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
                       <img src={element.url} alt={element.name} />
                     </ImageContainer>
                   )}
+                  <Likes>
+                    <AiFillLike size={20} color="#191970" className="likes" />
+                    <p>{`${element.likes}`}</p>
+                  </Likes>
 
                   <LikeCommentContainer>
                     <LikeButton

@@ -1,4 +1,3 @@
-import { AiOutlineLike } from "react-icons/ai";
 import styled, { keyframes } from "styled-components";
 
 export const Post = styled.div`
@@ -232,5 +231,20 @@ export const LikeButton = styled.button`
     .liked {
       animation: ${pulseAnimation} 0.5s;
     }
+  }
+`;
+
+export const Likes = styled.div`
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 5px;
+  p {
+    margin: 0;
+    margin-left: 10px;
+  }
+
+  .likes {
+    margin-left: 10px;
   }
 `;

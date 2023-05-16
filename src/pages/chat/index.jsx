@@ -134,6 +134,8 @@ const ChatPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   }, [socket]);
 
   useEffect(() => {
+    setMessages([]);
+    setOldMessages([]);
     setOldMessagesLoading(true);
     api.get(`users/${id}`, {
       headers: {
@@ -147,6 +149,7 @@ const ChatPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
         },
       })
       .then((res) => {
+        console.log(res.data);
         setOldMessagesLoading(false);
         setOldMessages(res.data);
       })
@@ -154,6 +157,10 @@ const ChatPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
         setTimeout(() => {
           scrollDown();
         }, 1);
+      })
+      .catch((err) => {
+        console.log(err);
+        setOldMessagesLoading(false);
       });
   }, [userId]);
 

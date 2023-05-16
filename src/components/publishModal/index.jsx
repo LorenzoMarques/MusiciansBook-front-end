@@ -13,13 +13,13 @@ import { GrClose } from "react-icons/gr";
 import { FilesButton, FilesContainer } from "../../pages/feed/style";
 import { AiFillPicture } from "react-icons/ai";
 import { RiFolderMusicFill } from "react-icons/ri";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import api from "../../api";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const PublishModal = ({ setPublishModal, publishModalType }) => {
   const customId = "custom-id-yes";

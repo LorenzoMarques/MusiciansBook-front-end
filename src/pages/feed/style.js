@@ -1,3 +1,4 @@
+import { AiOutlineLike } from "react-icons/ai";
 import styled, { keyframes } from "styled-components";
 
 export const Post = styled.div`
@@ -20,6 +21,18 @@ export const Post = styled.div`
     p {
       margin-left: 0px;
     }
+  }
+`;
+
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 `;
 
@@ -55,7 +68,7 @@ export const FakeImage = styled.div`
   }
 `;
 
-export const LikeSaveContainer = styled.div`
+export const LikeCommentContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -64,10 +77,11 @@ export const LikeSaveContainer = styled.div`
   button {
     border: unset;
     background-color: transparent;
-    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
     transition: 0.2s;
     :hover {
-      color: #434343;
+      background-color: rgba(128, 128, 128, 0.2);
     }
   }
 `;
@@ -211,4 +225,12 @@ export const FilesButton = styled.button`
   border: unset;
   display: flex;
   align-items: center;
+`;
+
+export const LikeButton = styled.button`
+  :focus {
+    .liked {
+      animation: ${pulseAnimation} 0.5s;
+    }
+  }
 `;

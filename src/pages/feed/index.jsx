@@ -10,13 +10,15 @@ import {
   FilesContainer,
   FollowingContainer,
   ImageContainer,
-  LikeSaveContainer,
+  LikeButton,
+  LikeCommentContainer,
   Post,
   PostsContainer,
   UserContainer,
 } from "./style";
 import "react-h5-audio-player/lib/styles.css";
-import { AiFillPicture } from "react-icons/ai";
+import { AiFillLike, AiFillPicture, AiOutlineLike } from "react-icons/ai";
+import { GoCommentDiscussion } from "react-icons/go";
 import { RiFolderMusicFill, RiPlayCircleLine } from "react-icons/ri";
 import PublishModal from "../../components/publishModal";
 import InfiniteScroll from "../../components/infinityScroll";
@@ -24,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "../../globalStyle";
 
 const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
+  const [likedPosts, setLikedPosts] = useState([]);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
@@ -40,6 +43,23 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
       setIsSmallScreen(true);
     } else {
       setIsSmallScreen(false);
+    }
+  };
+
+  const likeDislike = (postId) => {
+    api.post(`like/${postId}`, null, {
+      headers: { Authorization: `token ${token}` },
+    });
+
+    const findPost = likedPosts.find((element) => element === postId);
+
+    if (findPost) {
+      const updatedLikedPosts = likedPosts.filter(
+        (element) => element !== postId
+      );
+      setLikedPosts(updatedLikedPosts);
+    } else {
+      setLikedPosts([...likedPosts, postId]);
     }
   };
 
@@ -61,6 +81,12 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
       .then((res) => {
         setPosts([...posts, ...res.data.results]);
         setPage(res.data.nextPage);
+        setLikedPosts([
+          ...likedPosts,
+          ...res.data.results
+            .filter((element) => element.liked)
+            .map((element) => element.id),
+        ]);
       })
       .then(() => {
         setLoading(false);
@@ -225,10 +251,26 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
                     </ImageContainer>
                   )}
 
-                  <LikeSaveContainer>
-                    <button>Curtir</button>
-                    <button>Salvar</button>
-                  </LikeSaveContainer>
+                  <LikeCommentContainer>
+                    <LikeButton
+                      onClick={() => {
+                        likeDislike(element.id);
+                      }}
+                    >
+                      {likedPosts.includes(element.id) ? (
+                        <AiFillLike
+                          size={30}
+                          color="#191970"
+                          className="liked"
+                        />
+                      ) : (
+                        <AiOutlineLike size={30} color="#191970" />
+                      )}
+                    </LikeButton>
+                    <button>
+                      <GoCommentDiscussion size={30} color="#191970" />
+                    </button>
+                  </LikeCommentContainer>
                 </Post>
               );
             })}

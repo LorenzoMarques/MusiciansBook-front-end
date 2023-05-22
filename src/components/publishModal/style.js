@@ -1,14 +1,5 @@
-import styled, { keyframes } from "styled-components";
-
-const inKeyFrame = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    transform: 1;
-  }
-`;
+import styled from "styled-components";
+import { inKeyFrame } from "../../globalStyle";
 
 export const PublishModalContainer = styled.form`
   background-color: var(--color-grey10);
@@ -58,19 +49,6 @@ export const TextAreaContainer = styled.textarea`
 export const UploadFiles = styled.div`
   display: flex;
   justify-content: space-around;
-`;
-
-export const Background = styled.div`
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(0, 0, 0, 0.4);
-  z-index: 9999;
-  position: fixed;
-  top: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Line = styled.div`

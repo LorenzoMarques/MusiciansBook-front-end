@@ -20,12 +20,12 @@ import {
   ButtonsContainer,
 } from "./style";
 import { toast } from "react-toastify";
-import { Background } from "../../components/publishModal/style";
 import { Line } from "../../components/publishModal/style";
 import { GrClose } from "react-icons/gr";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Background } from "../../globalStyle";
 
 const ProfilePage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const { id } = useParams();

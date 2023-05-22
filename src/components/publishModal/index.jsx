@@ -1,5 +1,4 @@
 import {
-  Background,
   InputFileContainer,
   Line,
   ModalHeader,
@@ -20,6 +19,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { Background } from "../../globalStyle";
 
 const PublishModal = ({ setPublishModal, publishModalType }) => {
   const customId = "custom-id-yes";

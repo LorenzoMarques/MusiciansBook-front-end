@@ -117,15 +117,6 @@ export const FollowingContainer = styled.div`
   h2 {
     margin-bottom: 25px;
   }
-
-  &::-webkit-scrollbar {
-    border-radius: 5px;
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--color-grey4);
-  }
 `;
 
 export const PostsContainer = styled.div`

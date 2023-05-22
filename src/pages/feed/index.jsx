@@ -24,7 +24,8 @@ import { RiFolderMusicFill, RiPlayCircleLine } from "react-icons/ri";
 import PublishModal from "../../components/publishModal";
 import InfiniteScroll from "../../components/infinityScroll";
 import { useNavigate } from "react-router-dom";
-import { Line, LoadingSpinner } from "../../globalStyle";
+import { LoadingSpinner } from "../../globalStyle";
+import CommentsModal from "../../components/comment";
 
 const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const [likedPosts, setLikedPosts] = useState([]);
@@ -36,6 +37,7 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [followersLoading, setFollowersLoading] = useState(true);
+  const [postId, setPostId] = useState();
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -285,7 +287,11 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
                         <AiOutlineLike size={30} color="#191970" />
                       )}
                     </LikeButton>
-                    <button>
+                    <button
+                      onClick={() => {
+                        setPostId(element.id);
+                      }}
+                    >
                       <GoCommentDiscussion size={30} color="#191970" />
                     </button>
                   </LikeCommentContainer>
@@ -297,6 +303,7 @@ const FeedPage = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
       </PostsContainer>
       <InfiniteScroll fetchMore={() => setLoading(true)} />
       {loading && <InfiniteScroll fetchMore={loadPage} />}
+      {postId && <CommentsModal postId={postId} setPostId={setPostId} />}
     </FeedContainer>
   );
 };

@@ -191,7 +191,7 @@ const Header = ({ setPlaylist, playlist, setCurrentTrackIndex }) => {
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              alt=""
+              alt="#"
             />
             <h3>{name}</h3>
           </User>

@@ -58,18 +58,16 @@ export default createGlobalStyle`
       @media (min-width: 800px) {
 
         &::-webkit-scrollbar {
-        border-radius: 5px;
         width: 10px;
         }
 
         &::-webkit-scrollbar-thumb {
         background-color: var(--color-grey4);
+        border-radius: 5px;
         }
       }
 
     }
-
-
 
     a {
         text-decoration: none;
@@ -153,4 +151,27 @@ export const LoadingContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+export const Background = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0, 0.4);
+  z-index: 9999;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const inKeyFrame = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    transform: 1;
+  }
 `;

@@ -20,15 +20,6 @@ export const Modal = styled.div`
     width: 350px;
     top: 50px;
     left: -50%;
-
-    &::-webkit-scrollbar {
-      border-radius: 5px;
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--color-grey4);
-    }
   }
 `;
 
